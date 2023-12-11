@@ -24,8 +24,12 @@ void	place_image(char **map, int y, int x, t_game *param)
 	}
 	if (map[y][x] == EXIT)
 		mlx_image_to_window(param->mlx, param->images->exit, x * 64, y * 64);
-	else if (map[y][x] == WALL)
-		mlx_image_to_window(param->mlx, param->images->wall, x * 64, y * 64);
+	else if (map[y][x] == WALL && x == 0)
+		mlx_image_to_window(param->mlx, param->images->left, x * 64, y * 64);
+	else if (map[y][x] == WALL && x == ft_strlen(map[y]) - 1)
+		mlx_image_to_window(param->mlx, param->images->right, x * 64, y * 64);
+	else if (map[y][x] == WALL && x != 0 && x != ft_strlen(map[y]) - 1)
+		mlx_image_to_window(param->mlx, param->images->middle, x * 64, y * 64);
 }
 
 void	place_player(char **map, t_game *param)
@@ -50,21 +54,72 @@ void	place_player(char **map, t_game *param)
 	}
 }
 
+void	place_top_walls(char **map, t_game *param)
+{
+	int	x;
+
+	x = 0;
+	while (map[0][x])
+	{
+		if (x == 0)
+		{
+			mlx_image_to_window(param->mlx, param->images->top_left,
+				x * 64, 0 * 64);
+		}
+		else if (x == ft_strlen(map[0]) - 1)
+		{
+			mlx_image_to_window(param->mlx, param->images->top_right,
+				x * 64, 0 * 64);
+		}
+		else
+			mlx_image_to_window(param->mlx, param->images->top,
+				x * 64, 0 * 64);
+		x++;
+	}
+}
+
+void	place_bot_walls(int y, char **map, t_game *param)
+{
+	int	x;
+
+	x = 0;
+	while (map[y][x])
+	{
+		if (x == 0)
+		{
+			mlx_image_to_window(param->mlx, param->images->bot_left,
+				x * 64, y * 64);
+		}
+		else if (x == ft_strlen(map[y]) - 1)
+		{
+			mlx_image_to_window(param->mlx, param->images->bot_right,
+				x * 64, y * 64);
+		}
+		else
+			mlx_image_to_window(param->mlx, param->images->bot,
+				x * 64, y * 64);
+		x++;
+	}
+}
+
 void	ft_place_map(char	**map, t_game *param)
 {
 	int	y;
 	int	x;
 
-	y = -1;
-	while (map[++y])
+	place_top_walls(param->map, param);
+	y = 1;
+	while (y < find_sizey(map) / 64 - 1)
 	{
 		x = 0;
-		while (map[y][x] != '\0')
+		while (map[y][x])
 		{
 			place_image(map, y, x, param);
 			x++;
 		}
+		y++;
 	}
+	place_bot_walls(y, param->map, param);
 	place_player(param->map, param);
 	mlx_image_to_window(param->mlx, param->images->player,
 		param->images->player->instances[0].x * 64,

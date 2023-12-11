@@ -37,7 +37,15 @@
 typedef struct s_images {
 	mlx_image_t		*player;
 	mlx_image_t		*floor;
-	mlx_image_t		*wall;
+	mlx_image_t		*middle;
+	mlx_image_t		*bot;
+	mlx_image_t		*bot_right;
+	mlx_image_t		*top;
+	mlx_image_t		*top_right;
+	mlx_image_t		*left;
+	mlx_image_t		*top_left;
+	mlx_image_t		*right;
+	mlx_image_t		*bot_left;
 	mlx_image_t		*coin;
 	mlx_image_t		*exit;
 }	t_images;
