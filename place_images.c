@@ -19,7 +19,7 @@ void	place_image(char **map, int y, int x, t_game *param)
 		mlx_image_to_window(param->mlx, param->images->floor, x * 64, y * 64);
 	if (map[y][x] == COLLEC)
 	{
-		mlx_image_to_window(param->mlx, param->images->coin, x * 64, y * 64);
+		mlx_image_to_window(param->mlx, param->images->chest, x * 64, y * 64);
 		param->n_collect++;
 	}
 	if (map[y][x] == EXIT)

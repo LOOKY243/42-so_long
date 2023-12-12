@@ -36,7 +36,7 @@ int	which_instance(char **map2, t_game *param)
 	return (count);
 }
 
-void	remove_coin(t_game *param)
+void	remove_chest(t_game *param)
 {
 	int	i;
 	int	pos;
@@ -45,27 +45,27 @@ void	remove_coin(t_game *param)
 	pos = which_instance(param->map2, param);
 	while (i >= 0)
 	{
-		if (param->images->coin->instances[pos].y
+		if (param->images->chest->instances[pos].y
 			== param->images->player->instances[0].y
-			&& param->images->coin->instances[pos].x
+			&& param->images->chest->instances[pos].x
 			&& param->images->player->instances[0].x
-			&& param->images->coin->instances[pos].enabled)
+			&& param->images->chest->instances[pos].enabled)
 		{
-			param->images->coin->instances[pos].enabled = false;
+			param->images->chest->instances[pos].enabled = false;
 			return ;
 		}
 		i--;
 	}
 }
 
-void	is_coin(t_game *param, int x, int y)
+void	is_chest(t_game *param, int x, int y)
 {
 	if (param->map[y][x] == 'C')
 	{
 		param->collect_count = param->collect_count + 1;
 		param->map[param->images->player->instances[0].y / 64]
 		[param->images->player->instances[0].x / 64] = FLOOR;
-		remove_coin(param);
+		remove_chest(param);
 	}
 }
 

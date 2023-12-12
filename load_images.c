@@ -19,6 +19,7 @@ mlx_image_t	*ft_get_image(mlx_t *mlx, const char *image_file)
 	img = mlx_new_image(mlx, 64, 64);
 	texture = mlx_load_png(image_file);
 	img = mlx_texture_to_image(mlx, texture);
+	mlx_delete_texture(texture);
 	return (img);
 }
 
@@ -33,8 +34,8 @@ void	ft_load_images(t_game *param)
 	param->images = ft_calloc(1, sizeof(t_images));
 	load_player(param);
 	param->images->floor = ft_get_image(param->mlx, "textures/floor.png");
-	param->images->coin = ft_get_image(param->mlx,
-			"textures/coin.png");
+	param->images->chest = ft_get_image(param->mlx,
+			"textures/chest.png");
 	param->images->exit = ft_get_image(param->mlx,
 			"textures/exit.png");
 	param->images->bot = ft_get_image(param->mlx,

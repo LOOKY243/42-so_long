@@ -32,6 +32,21 @@ int	find_sizey(char **str)
 	return (i * 64);
 }
 
+void	gnl_to_split(t_game *param, int fd)
+{
+	char	*tmp;
+
+	tmp = get_next_line(fd);
+	param->map = ft_split(tmp, '\n');
+	free(tmp);
+	tmp = get_next_line(fd);
+	param->map2 = ft_split(tmp, '\n');
+	free(tmp);
+	tmp = get_next_line(fd);
+	param->map3 = ft_split(tmp, '\n');
+	free(tmp);
+}
+
 int	game(int fd)
 {
 	t_game		param;
@@ -39,8 +54,8 @@ int	game(int fd)
 	param.move_count = 0;
 	param.collect_count = 0;
 	param.n_collect = 0;
-	param.map = ft_split(get_next_line(fd), '\n');
-	param.map2 = ft_split(get_next_line(fd), '\n');
+	
+	gnl_to_split(&param, fd);
 	param.mlx = mlx_init(find_sizex(param.map),
 			find_sizey(param.map), "so_long", false);
 	if (!param.mlx || !ft_parsing(&param))
@@ -51,6 +66,7 @@ int	game(int fd)
 	mlx_key_hook(param.mlx, (void (*)(mlx_key_data_t, void *))
 		ft_keys, &param);
 	mlx_loop(param.mlx);
+	free_all(&param);
 	return (TRUE);
 }
 

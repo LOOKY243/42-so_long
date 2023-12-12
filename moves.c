@@ -75,7 +75,7 @@ void	ft_keys(mlx_key_data_t keydata, t_game *param)
 	if ((keydata.key == MLX_KEY_D
 			|| keydata.key == MLX_KEY_RIGHT) && keydata.action == MLX_PRESS)
 		ft_move_right(param);
-	is_coin(param, param->images->player->instances[0].x / 64,
+	is_chest(param, param->images->player->instances[0].x / 64,
 		param->images->player->instances[0].y / 64);
 	is_exit(param, param->images->player->instances[0].x / 64,
 		param->images->player->instances[0].y / 64);

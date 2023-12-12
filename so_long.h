@@ -46,7 +46,7 @@ typedef struct s_images {
 	mlx_image_t		*top_left;
 	mlx_image_t		*right;
 	mlx_image_t		*bot_left;
-	mlx_image_t		*coin;
+	mlx_image_t		*chest;
 	mlx_image_t		*exit;
 }	t_images;
 
@@ -59,6 +59,7 @@ typedef struct s_game {
 	int				n_collect;
 	char			**map;
 	char			**map2;
+	char			**map3;
 }	t_game;
 
 int				ft_printf(const char *format, ...);
@@ -83,8 +84,9 @@ char			*ft_prealloc(char const *s, char c, int i);
 char			**ft_split(const char *s, char c);
 void			*ft_calloc(size_t nmemb, size_t size);
 void			is_exit(t_game *param, int x, int y);
-void			is_coin(t_game *param, int x, int y);
-void			remove_coin(t_game *param);
+void			is_chest(t_game *param, int x, int y);
+void			remove_chest(t_game *param);
 void			ft_place_map(char	**map, t_game *param);
+void			free_all(t_game *param);
 
 #endif
