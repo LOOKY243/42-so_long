@@ -54,7 +54,6 @@ int	game(int fd)
 	param.move_count = 0;
 	param.collect_count = 0;
 	param.n_collect = 0;
-	
 	gnl_to_split(&param, fd);
 	param.mlx = mlx_init(find_sizex(param.map),
 			find_sizey(param.map), "so_long", false);
