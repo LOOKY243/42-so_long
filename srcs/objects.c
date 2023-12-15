@@ -78,13 +78,8 @@ void	is_exit(t_game *param, int x, int y)
 		param->images->o_exit->instances[0].enabled = true;
 	}
 	if (param->map[y][x] == 'E' && param->collect_count == param->n_collect)
-		mlx_close_window(param->mlx);
-	if (param->is_enemy)
 	{
-		if (param->images->enemy->instances[0].y
-			== param->images->p_front->instances[0].y
-			&& param->images->enemy->instances[0].x
-			== param->images->p_front->instances[0].x)
-			mlx_close_window(param->mlx);
+		mlx_close_window(param->mlx);
+		puts("GG's You won!");
 	}
 }

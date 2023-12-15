@@ -6,7 +6,7 @@
 /*   By: gmarre <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 11:06:24 by gmarre            #+#    #+#             */
-/*   Updated: 2023/12/08 19:31:56 by gmarre           ###   ########.fr       */
+/*   Updated: 2023/12/15 13:01:12 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../so_long.h"
@@ -25,8 +25,8 @@ int	ft_strlen(char const *str)
 
 char	*ft_strjoin(char const *extra, char const *buff)
 {
-	char				*str;
-	unsigned int		i;
+	char			*str;
+	unsigned int	i;
 
 	if (!buff)
 		return (NULL);

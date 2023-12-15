@@ -6,7 +6,7 @@
 /*   By: gmarre <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 10:32:47 by gmarre            #+#    #+#             */
-/*   Updated: 2023/12/08 19:32:03 by gmarre           ###   ########.fr       */
+/*   Updated: 2023/12/15 13:00:29 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../so_long.h"
@@ -38,7 +38,7 @@ static char	*get_extra(int fd, char *extra)
 	return (extra);
 }
 
-static char	*get_line(char	*extra)
+static char	*get_line(char *extra)
 {
 	int		i;
 	char	*line;

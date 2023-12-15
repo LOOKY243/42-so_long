@@ -6,12 +6,12 @@
 /*   By: gmarre <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 12:37:05 by gmarre            #+#    #+#             */
-/*   Updated: 2023/12/14 17:33:49 by gmarre           ###   ########.fr       */
+/*   Updated: 2023/12/15 12:26:10 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
-static unsigned int	g_custom_seed = 3;
+static unsigned int	g_custom_seed = 5;
 
 unsigned int	custom_rand(void)
 {
@@ -24,9 +24,9 @@ unsigned int	custom_rand(void)
 
 int	random_num(int min, int max)
 {
-	int					temp;
-	int					range;
-	int					random_number;
+	int	temp;
+	int	range;
+	int	random_number;
 
 	if (min > max)
 	{
@@ -40,6 +40,21 @@ int	random_num(int min, int max)
 	return (random_number);
 }
 
+void	lose_to_enemy(t_game *param)
+{
+	if (param->is_enemy)
+	{
+		if (param->images->enemy->instances[0].y
+			== param->images->p_front->instances[0].y
+			&& param->images->enemy->instances[0].x
+			== param->images->p_front->instances[0].x)
+		{
+			puts("You died to the enemy, better luck next time!");
+			mlx_close_window(param->mlx);
+		}
+	}
+}
+
 void	move_enemy(t_game *param)
 {
 	int	num;
@@ -47,22 +62,24 @@ void	move_enemy(t_game *param)
 	num = random_num(1, 10);
 	if (param->images->enemy)
 	{
+		lose_to_enemy(param);
 		if (num == 1 || num == 5 || num == 7)
 			if (param->map[param->images->enemy->instances[0].y / 64
 					- 1][param->images->enemy->instances[0].x / 64] == FLOOR)
 				param->images->enemy->instances[0].y -= 64;
 		if (num == 2 || num == 10)
-			if (param->map[param->images->enemy->instances[0].y
-					/ 64][param->images->enemy->instances[0].x / 64 + 1] == FLOOR)
+			if (param->map[param->images->enemy->instances[0].y / 64]
+				[param->images->enemy->instances[0].x / 64 + 1] == FLOOR)
 				param->images->enemy->instances[0].x += 64;
 		if (num == 3 || num == 9 || num == 8)
 			if (param->map[param->images->enemy->instances[0].y / 64
 					+ 1][param->images->enemy->instances[0].x / 64] == FLOOR)
 				param->images->enemy->instances[0].y += 64;
 		if (num == 4 || num == 6)
-			if (param->map[param->images->enemy->instances[0].y
-					/ 64][param->images->enemy->instances[0].x / 64 - 1] == FLOOR)
+			if (param->map[param->images->enemy->instances[0].y / 64]
+				[param->images->enemy->instances[0].x / 64 - 1] == FLOOR)
 				param->images->enemy->instances[0].x -= 64;
+		lose_to_enemy(param);
 	}
 }
 

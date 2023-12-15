@@ -74,9 +74,26 @@ int	main(int argc, char **argv)
 	int	fd;
 
 	if (argc != 2)
-		return (0);
+	{
+		if (argc > 2)
+			puts("Error,\nYou can only select one map");
+		else
+			puts("Error,\nNo map selected");
+		return (FALSE);
+	}
 	fd = open(argv[1], O_RDONLY);
 	if (!fd || fd < 0)
-		return (0);
+	{
+		puts("Error,\nMap doesn't exist");
+		return (FALSE);
+	}
+	if (argv[1][ft_strlen(argv[1]) - 1] != 'r'
+		|| argv[1][ft_strlen(argv[1]) - 2] != 'e'
+		|| argv[1][ft_strlen(argv[1]) - 3] != 'b'
+		|| argv[1][ft_strlen(argv[1]) - 4] != '.')
+	{
+		puts("Error,\nWrong file extension");
+		return (FALSE);
+	}
 	game(fd);
 }

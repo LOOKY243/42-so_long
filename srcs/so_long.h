@@ -6,7 +6,7 @@
 /*   By: gmarre <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 15:15:42 by gmarre            #+#    #+#             */
-/*   Updated: 2023/12/14 17:47:12 by gmarre           ###   ########.fr       */
+/*   Updated: 2023/12/15 12:24:39 by gmarre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ int					check_walls(t_game *param);
 int					is_possible(t_game *param, int y, int x, int trigger);
 int					check_lenght(t_game *param);
 mlx_image_t			*ft_get_image(mlx_t *mlx, const char *image_file);
-int	    			spawn_enemy(t_game *param);
-void    			move_enemy(t_game *param);
+int					spawn_enemy(t_game *param);
+void				move_enemy(t_game *param);
+void				lose_to_enemy(t_game *param);
 
 #endif
